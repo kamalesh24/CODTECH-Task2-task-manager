@@ -23,7 +23,8 @@ mongoose.connect(dbUrl).then(() => {
 });
 
 const itemsSchema = new mongoose.Schema({
-    name: String
+    name: String,
+    description: String
 });
 
 const listSchema = new mongoose.Schema({
@@ -35,13 +36,16 @@ const Item = mongoose.model("item", itemsSchema);
 const List = mongoose.model("list", listSchema);
 
 const item1 = new Item({
-    name: "Welcome to your Todolist!"
+    name: "Welcome to your Todolist!",
+    description: ""
 });
 const item2 = new Item({
-    name: "Hit + button to add a new item."
+    name: "Hit + button to add a new item.",
+    description: ""
 });
 const item3 = new Item({
-    name: "<-- Hit this to delete an item."
+    name: "<-- Hit this to delete an item.",
+    description: ""
 });
 
 const defaultItems = [item1, item2, item3];
@@ -89,10 +93,12 @@ app.get("/:customListName", function(req, res) {
 
 app.post("/", function(req, res) {
     const itemName = req.body.newItem;
+    const desc = req.body.description;
     const listName = req.body.list;
 
     const newItem = new Item({
-        name: itemName
+        name: itemName,
+        description: desc
     });
 
     if (listName === "Today") {

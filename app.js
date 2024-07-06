@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static("public"));
 
-const dbUrl = "mongodb+srv://kamalskrishnan:2004jkuma@cluster0.wjpvu9w.mongodb.net/todoListDB?retryWrites=true&w=majority";
-
+const dbUrl = "mongodb://localhost:27017/todoListDB";
+//mongodb://localhost:27017  ?retryWrites=true&w=majority
 mongoose.connect(dbUrl).then(() => {
     console.log("Connection successful");
 }).catch((e) =>{
